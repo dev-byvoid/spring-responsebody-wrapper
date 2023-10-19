@@ -1,5 +1,5 @@
 # 介绍
-基于注解和自定义 **`HandlerMethodReturnValueHandler`**，在不破坏spring默认配置情况下，实现对springmvc restful接口返回结果的包装增加增加业务返回码和说明信息，类似：
+基于注解和自定义 **`HandlerMethodReturnValueHandler`**，在不破坏spring默认配置情况下，实现对`springmvc restful`接口返回结果的包装，增加业务异常返回码（code）和异常说明信息（message），如下：
 ```json
 
 {
@@ -54,7 +54,7 @@ public class ApplicationMain {
             @Override
             public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
                 Map<String, Object> attributes = super.getErrorAttributes(webRequest, includeStackTrace);
-                return ImmutableMap.of("code", attributes.getOrDefault("status", "500"), "message", attributes.getOrDefault("message", ""));
+                return ImmutableMap.of("code", attributes.getOrDefault("status", "D500"), "message", attributes.getOrDefault("message", ""));
             }
         };
     }
